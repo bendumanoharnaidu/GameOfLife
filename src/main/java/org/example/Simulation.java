@@ -1,15 +1,14 @@
 package org.example;
 
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 //import static org.example.Grids.applyRules;
 
 public class Simulation {
 
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
+    public static void main(String[] args) throws InterruptedException {
         Scanner sc = new Scanner(System.in);
-
         System.out.println("Enter the number of rows: ");
         int rows = sc.nextInt();
 
@@ -19,44 +18,15 @@ public class Simulation {
         System.out.println("Enter seeding percentage: ");
         int seedingpercentage = sc.nextInt();
 
-        Grids grids = new Grids(rows, cols, seedingpercentage);
+        Board board = new Board(rows, cols, seedingpercentage);
+        board.generateBoard();
+        int generation = 0;
 
-        grids.StartGame();
-
-//        Grids grids = new Grids();
-
-//        int[][] grid = grids.GetRandomGrid(rows, cols, seedingpercentage);
-
-//        while(true) {
-//            printGrid(grid);
-//            try {
-//                Thread.sleep(1000);
-//            } catch (InterruptedException e) {
-//                throw new RuntimeException(e);
-//            }
-//            grid = grids.applyRules(grid);
-//
-//            if (grids.CheckIfallCellsAreDead(grid)) {
-//                System.out.println("All cells are dead");
-//                break;
-//            }
-//        }
-
+        while (board.getCountOfAliveCells() > 0) {
+            board.DisplayBoard();
+            Thread.sleep(1000);
+            System.out.println("Generation Number:" + generation++);
+            board.nextGeneration();
+        }
     }
-    //printing the grid
-//    private static void printGrid(int[][] grid) {
-//        System.out.println("Printing the grid");
-//        for (int i = 0; i < grid.length; i++) {
-//            for (int j = 0; j < grid[0].length; j++) {
-//                if (grid[i][j] == 1) {
-//                    System.out.print("*"+ " ");
-//                } else {
-//                    System.out.print("-"+ " ");
-//                }
-//            }
-//            System.out.println("");
-//        }
-//        System.out.println();
-//    }
-
 }
