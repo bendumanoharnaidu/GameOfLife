@@ -84,4 +84,13 @@ public class BoardTest {
         int actual = board.getCountOfAliveCells();
         assertEquals(expected, actual);
     }
+    @Test
+    public void TestToGenerateBoardWithCorrectOutputBoard4() {
+        Board board = new Board(2,2,75);
+        board.generateBoard();      //Three Alive Cells will be Alive
+        board.nextGeneration();     //One Cell will Evolve to be Alive
+        int expected = 4;
+        int actual = board.getCountOfAliveCells();
+        assertEquals(expected, actual);
+    }
 }
