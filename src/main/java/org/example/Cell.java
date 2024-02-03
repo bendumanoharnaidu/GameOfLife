@@ -7,6 +7,10 @@ public class Cell {
     public CellStatus getStatus() {
         return this.status;
     }
+    @Override
+    public String toString() {
+        return (status== CellStatus.ALIVE ? "X" : ".");
+    }
     public int countLiveNeighbors(int row, int col, Cell[][] cells) {
         int count = 0;
         for (int r = row-1; r <= row+1; r++) {
@@ -24,16 +28,10 @@ public class Cell {
             if (livingNeighbors<2 || livingNeighbors>3) {
                 status = CellStatus.DEAD;
             }
-            else {
-                status = CellStatus.ALIVE;
-            }
         }
         else {
             if (livingNeighbors == 3) {
                 status = CellStatus.ALIVE;
-            }
-            else {
-                status = CellStatus.DEAD;
             }
         }
     }

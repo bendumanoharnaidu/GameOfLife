@@ -60,12 +60,7 @@ public class Board {
     public void DisplayBoard() {
         for (int r = 0; r < rows; r++) {
             for (int c = 0; c < cols; c++) {
-                if (cells[r][c].getStatus() == CellStatus.ALIVE) {
-                    System.out.print("X ");
-                }
-                else {
-                    System.out.print(". ");
-                }
+                System.out.print(cells[r][c]+" ");
             }
             System.out.println();
         }
