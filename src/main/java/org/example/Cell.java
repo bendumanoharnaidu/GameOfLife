@@ -4,8 +4,8 @@ public class Cell {
     public Cell(CellStatus status) {
         this.status = status;
     }
-    public CellStatus getStatus() {
-        return this.status;
+    public boolean isAlive() {
+        return status == CellStatus.ALIVE;
     }
     @Override
     public String toString() {

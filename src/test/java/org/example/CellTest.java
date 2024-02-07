@@ -9,25 +9,29 @@ public class CellTest {
     public void TestAliveCellWithOneNeighborDies() {
         Cell cell = new Cell(CellStatus.ALIVE);
         cell.evolve(1);
-        assertEquals(cell.getStatus(), CellStatus.DEAD);
+
+        assertFalse(cell.isAlive());
     }
     @Test
     public void TestAliveCellWithTwoNeighborsLives() {
         Cell cell = new Cell(CellStatus.ALIVE);
         cell.evolve(2);
-        assertEquals(cell.getStatus(), CellStatus.ALIVE);
+
+        assertTrue(cell.isAlive());
     }
     @Test
     public void TestDeadCellWithThreeNeighborsLives() {
         Cell cell = new Cell(CellStatus.DEAD);
         cell.evolve(3);
-        assertEquals(cell.getStatus(), CellStatus.ALIVE);
+
+        assertTrue(cell.isAlive());
     }
     @Test
     public void TestDeadCellWithTwoNeighborsStaysDead() {
         Cell cell = new Cell(CellStatus.DEAD);
         cell.evolve(2);
-        assertEquals(cell.getStatus(), CellStatus.DEAD);
+        
+        assertFalse(cell.isAlive());
     }
 
     @Test

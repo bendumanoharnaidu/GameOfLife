@@ -26,7 +26,7 @@ public class Board {
         while (count < alivecount) {
             int row = (int) (Math.random() * rows);
             int col = (int) (Math.random() * cols);
-            if (cells[row][col].getStatus() == CellStatus.DEAD) {
+            if (!cells[row][col].isAlive()) {
                 cells[row][col] = new Cell(CellStatus.ALIVE);
                 count++;
             }
@@ -38,7 +38,7 @@ public class Board {
         for (int i=0; i<rows; i++) {
             for (int j=0; j<cols; j++) {
                 int aliveNeighbors = cells[i][j].countLiveNeighbors(i, j, cells);
-                newGeneration[i][j] = new Cell(cells[i][j].getStatus());
+                newGeneration[i][j] = new Cell(cells[i][j].isAlive() ? CellStatus.ALIVE : CellStatus.DEAD);
                 newGeneration[i][j].evolve(aliveNeighbors);
             }
         }
@@ -49,7 +49,7 @@ public class Board {
         int count = 0;
         for (int r = 0; r < rows; r++) {
             for (int c = 0; c < cols; c++) {
-                if (cells[r][c].getStatus() == CellStatus.ALIVE) {
+                if (cells[r][c].isAlive()) {
                     count++;
                 }
             }
